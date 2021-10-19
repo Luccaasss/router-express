@@ -17,7 +17,12 @@ router.get('/animals', (req, res) => {
 //GET return just one animal by id.
 router.get('/animals/:id', (req, res) => {
     const animalSelected = animals.filter(e => e.id == req.params.id);
-    return res.json(animalSelected);
+    if (animalSelected.length !== 0) {
+        res.status(200).json(animalSelected);
+    } 
+    else {
+        res.status(400).send();
+    }
 })
 
 //POST add a new animal.
